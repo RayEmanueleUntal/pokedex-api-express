@@ -7,7 +7,7 @@ exports.getAllPokemons = async () => {
 exports.getPokemonById = async (id) => {
   const user = await prisma.pokemon.findUnique({
     where: {
-      id: Number(id),
+      id: parseInt(id),
     },
   });
 
@@ -21,9 +21,21 @@ exports.createPokemon = async (data) => {
 };
 
 exports.editPokemon = async (id, data) => {
+  const { name, description, weight, height, abilities, base_experience } =
+    data;
+
+  const cleanData = {
+    name,
+    description,
+    weight,
+    height,
+    abilities,
+    base_experience,
+  };
+
   await prisma.pokemon.update({
-    where: { id },
-    data,
+    where: { id: parseInt(id) },
+    data: cleanData,
   });
 
   return { success: true };
@@ -31,7 +43,7 @@ exports.editPokemon = async (id, data) => {
 
 exports.deletePokemon = async (id) => {
   await prisma.pokemon.delete({
-    where: { id },
+    where: { id: parseInt(id) },
   });
 
   return { success: true };

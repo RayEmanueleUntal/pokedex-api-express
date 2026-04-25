@@ -12,9 +12,9 @@ router.get("/:id", pokemonController.getPokemonById);
 router.post("/", pokemonController.createPokemon);
 
 // UPDATE/PATCH
-router.patch("/", pokemonController.editPokemon);
+router.patch("/:id", pokemonController.editPokemon);
 
 // DELETE
-router.patch("/", pokemonController.deletePokemon);
+router.delete("/:id", pokemonController.deletePokemon);
 
 module.exports = router;

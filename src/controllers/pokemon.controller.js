@@ -10,7 +10,7 @@ exports.getAllPokemons = async (req, res) => {
 };
 
 exports.getPokemonById = async (req, res) => {
-  const id = req.query;
+  const { id } = req.params;
   try {
     const pokemon = await pokemonService.getPokemonById(id);
 
@@ -36,7 +36,7 @@ exports.createPokemon = async (req, res) => {
 };
 
 exports.editPokemon = async (req, res) => {
-  const { id } = req.query;
+  const { id } = req.params;
   const pokemonData = req.body;
   try {
     const edited = await pokemonService.editPokemon(id, pokemonData);
@@ -47,9 +47,9 @@ exports.editPokemon = async (req, res) => {
 };
 
 exports.deletePokemon = async (req, res) => {
-  const id = req.query;
+  const { id } = req.params;
   try {
-    const deleted = await pokemonService.deletePokemon(req);
+    const deleted = await pokemonService.deletePokemon(id);
     res.status(200).json(deleted);
   } catch (error) {
     res.status(400).json({ message: error.message });
