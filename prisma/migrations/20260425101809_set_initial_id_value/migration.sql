@@ -12,6 +12,14 @@ CREATE TABLE "Pokemon" (
     "special_attack" INTEGER NOT NULL DEFAULT 0,
     "special_defense" INTEGER NOT NULL DEFAULT 0,
     "speed" INTEGER NOT NULL DEFAULT 0,
+    "front_default" TEXT,
+    "front_shiny" TEXT,
+    "front_female" TEXT,
+    "front_shiny_female" TEXT,
+    "back_default" TEXT,
+    "back_shiny" TEXT,
+    "back_female" TEXT,
+    "back_shiny_female" TEXT,
     "abilities" TEXT[],
     "types" TEXT[],
     "sprite_url" TEXT,
@@ -29,4 +37,4 @@ CREATE TABLE "DeletedPokemon" (
     CONSTRAINT "DeletedPokemon_pkey" PRIMARY KEY ("id")
 );
 
-ALTER SEQUENCE "Pokemon_id_seq" RESTART WITH 10001;
+ALTER SEQUENCE "Pokemon_id_seq" RESTART WITH 50001;
