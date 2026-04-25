@@ -1,0 +1,30 @@
+{
+  "name": "pokedex-api-express",
+  "version": "1.0.0",
+  "description": "Backend for Pokedex",
+  "keywords": [
+    "api"
+  ],
+  "homepage": "https://github.com/RayEmanueleUntal/pokedex-api-express#readme",
+  "bugs": {
+    "url": "https://github.com/RayEmanueleUntal/pokedex-api-express/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RayEmanueleUntal/pokedex-api-express.git"
+  },
+  "license": "ISC",
+  "author": "repu",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/app.js",
+    "dev": "node src/app.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^7.8.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1"
+  }
+}
