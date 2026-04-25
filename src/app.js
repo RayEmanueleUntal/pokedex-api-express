@@ -1,11 +1,13 @@
 const express = require("express");
+const pokemonRoutes = require("./routes/pokemon.route");
+
 const app = express();
-const port = 3000;
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
+app.use(express.json());
 
+app.use("/pokemon", pokemonRoutes);
+
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
-  console.log("Running Pokedex Backend");
+  console.log(`Server listening on ${port}`);
 });

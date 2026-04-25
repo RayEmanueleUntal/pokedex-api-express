@@ -4,10 +4,52 @@
 // Get a free hosted Postgres database in seconds: `npx create-db`
 
 generator client {
-  provider = "prisma-client"
+  provider = "prisma-client-js"
   output   = "../src/generated/prisma"
+  moduleFormat = "cjs"
 }
 
 datasource db {
   provider = "postgresql"
+}
+
+
+/*
+Note: since prisma doesn't have a native way to auto increment ids starting from 10000:
+- In the terminal, run `npx prisma migrate dev --create-only --name set_initial_id_value`
+- Open the newly created migration.sql file in your prisma/migrations folder.
+- Add the following SQL line at the bottom of the file. Replace "Pokemon_id_seq" with the actual sequence name Prisma created.:
+  ALTER SEQUENCE "Pokemon_id_seq" RESTART WITH 10001;
+*/
+model Pokemon {
+  id        Int      @id @default(autoincrement())
+  name      String
+  description String?
+  weight    Int
+  height    Int
+  base_experience Int
+
+  // Stats (but flattened for simplicity)
+  hp Int @default(0)
+  attack Int @default(0)  
+  defense Int @default(0)
+  special_attack Int @default(0)
+  special_defense Int @default(0)
+  speed Int @default(0)
+
+  // Arrays  
+  abilities String[]
+  types String[]
+
+  // Metadata
+  sprite_url String?
+  cry_url String?
+
+  createdAt DateTime @default(now())
+}
+
+// This model is used to keep track of deleted Pokemon from pokeapi.co since we could not directly delete them from their database.
+model DeletedPokemon {
+  id Int @id
+  deletedAt DateTime @default(now())
 }
