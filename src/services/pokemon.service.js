@@ -142,7 +142,7 @@ exports.editPokemon = async (id, data) => {
 };
 
 // DELETE pokemon. If pokemon is in the pokemon db, directly delete.
-// otherwise, add to deletedPokemon table
+// also, add to deletedPokemon table
 exports.deletePokemon = async (id) => {
   // Check if id exists in the database
   const pokemon = await prisma.pokemon.findUnique({
@@ -154,7 +154,10 @@ exports.deletePokemon = async (id) => {
       where: { id: parseInt(id) },
     });
 
-    return { success: true };
+    if (parseInt(id) > 5000) {
+      // if pokemon is just from db, just skip
+      return { success: true };
+    }
   }
 
   // If id doesn't exist in the db, add the id in the deletedPokemons table
