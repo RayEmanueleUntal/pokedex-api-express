@@ -154,7 +154,7 @@ exports.deletePokemon = async (id) => {
       where: { id: parseInt(id) },
     });
 
-    if (parseInt(id) > 5000) {
+    if (parseInt(id) > 50000) {
       // if pokemon is just from db, just skip
       return { success: true };
     }
